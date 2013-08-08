@@ -1,0 +1,11 @@
+[
+    {
+        "caption": "Selection",
+        "mnemonic": "S",
+        "id": "selection",
+        "children":
+        [
+            { "command": "select_quoted", "caption": "Expand Selection to Quoted" }
+        ]
+    }
+]

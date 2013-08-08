@@ -1,0 +1,4 @@
+[
+	{"keys": ["super+'"], "command": "select_quoted"},
+	{"keys": ["super+shift+'"], "command": "select_quoted", "args": {"around": true} }
+]

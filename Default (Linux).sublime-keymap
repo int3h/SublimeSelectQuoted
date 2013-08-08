@@ -1,0 +1,4 @@
+[
+	{"keys": ["ctrl+'"], "command": "select_quoted"},
+	{"keys": ["ctrl+shift+'"], "command": "select_quoted", "args": {"inside": false} }
+]
