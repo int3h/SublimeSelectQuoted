@@ -43,7 +43,7 @@ class SelectQuoted(sublime_plugin.TextCommand):
 			around = True
 		# The end of the selection is a quote
 		if self.view.score_selector(region.b, "punctuation.definition.string") > 0:
-			around = True
+			around = False
 		# The selected region is abutted by quotes on either side
 		if (self.view.score_selector(region.a - 1, "punctuation.definition.string") > 0 and
 		    self.view.score_selector(region.b + 1, "punctuation.definition.string") > 0):
