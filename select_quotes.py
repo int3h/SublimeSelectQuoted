@@ -22,6 +22,8 @@ class SelectQuoted(sublime_plugin.TextCommand):
 		for reg in newSel:
 			selections.add(reg)
 
+		self.getTemplateRegion(region, around)
+
 
 	def getStringRegion(self, region, around=False):
 		"""
@@ -69,6 +71,23 @@ class SelectQuoted(sublime_plugin.TextCommand):
 			expandedB = expandedB + 1
 
 		return sublime.Region(expandedA, expandedB)
+
+
+	def getTemplateRegion(self, region, around=False):
+		regions = self.view.find_by_selector('string.template')
+		regions = regions + self.view.find_by_selector('meta.template.expression')
+
+		for region in regions:
+			for selection in self.view.sel():
+				if region.contains(selection):
+					start = region.a
+					stop = region.b
+					while (start > 0 and not self.view.match_selector(start, 'punctuation.definition.string.template.begin')):
+						start = start - 1
+					while (stop < self.view.size() and not self.view.match_selector(stop, 'punctuation.definition.string.template.end')):
+						stop = stop + 1
+
+					self.view.sel().add(sublime.Region(start + 1, stop))
 
 
 	def description(self, around=False):
